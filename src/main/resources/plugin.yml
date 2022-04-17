@@ -1,0 +1,8 @@
+name: Playtime
+author: GueniPlayz
+version: 1.0
+main: de.gueni.playtime.PlayTimePlugin
+api-version: 1.18
+
+softdepend:
+  - PlaceholderAPI

@@ -1,0 +1,11 @@
+# In order to get the plugin to work you need to configure the following parameters:
+# If you're using placeholder api valid placeholders are: %playtime_time
+database:
+  host: "localhost"
+  database: "database"
+  username: "user"
+  password: "password"
+  port: 3306
+
+settings:
+  placeholder_api: true
