@@ -8,6 +8,7 @@ import java.util.logging.Level;
 
 /**
  * This class initializes the database.
+ * From: https://github.com/RainbowDashLabs/BasicSQLPlugin/blob/1e76321a0ab889cb3ae5245e659c83a626f69aea/src/main/java/de/chojo/simplecoins/data/util/DbSetup.java
  */
 public class DatabaseSetup {
 
@@ -33,7 +34,7 @@ public class DatabaseSetup {
         }
         var queries = setup.split( ";" );
 
-        try ( var conn = plugin.getProvider().getConnection() ) {
+        try ( var conn = plugin.getDatabaseProvider().getConnection() ) {
             conn.setAutoCommit( false );
             for ( var query : queries ) {
                 if ( query.isBlank() ) continue;

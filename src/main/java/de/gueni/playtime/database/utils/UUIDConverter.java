@@ -5,6 +5,7 @@ import java.util.UUID;
 
 /**
  * Converts between UUID and byte array. This is needed because the database stores UUIDs as byte arrays.
+ * From: https://github.com/RainbowDashLabs/BasicSQLPlugin/blob/1e76321a0ab889cb3ae5245e659c83a626f69aea/src/main/java/de/chojo/simplecoins/util/UUIDConverter.java
  */
 public class UUIDConverter {
     private UUIDConverter() throws InstantiationException {

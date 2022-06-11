@@ -1,6 +1,7 @@
 package de.gueni.playtime.placeholder;
 
 import de.gueni.playtime.PlayTimePlugin;
+import de.gueni.playtime.database.user.DatabaseUser;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -30,7 +31,8 @@ public class PlaceholderHook extends PlaceholderExpansion {
     @Override
     public String onPlaceholderRequest( Player player, @NotNull String params ) {
         if ( params.equalsIgnoreCase( "time" ) ) {
-            return String.valueOf( plugin.getCoordinator().getPlayTime( player ) );
+            var user = DatabaseUser.get( player );
+            return String.valueOf( user.getPlayTime() );
         }
         return null;
     }

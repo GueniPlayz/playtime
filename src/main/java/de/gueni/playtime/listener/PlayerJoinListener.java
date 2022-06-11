@@ -22,7 +22,10 @@ public class PlayerJoinListener implements Listener {
         user.setJoinTime( System.currentTimeMillis() );
 
         plugin.getServer().getScheduler().runTaskAsynchronously( plugin,
-                () -> plugin.getCoordinator().updateUser( player )
+                () -> {
+                    plugin.getDatabaseCoordinator().updateUser( player );
+                    user.setPlayTime( plugin.getDatabaseCoordinator().getPlayTime( player ) );
+                }
         );
     }
 }

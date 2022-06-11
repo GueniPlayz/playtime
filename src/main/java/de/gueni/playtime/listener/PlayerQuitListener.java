@@ -21,7 +21,7 @@ public class PlayerQuitListener implements Listener {
         var playTime = System.currentTimeMillis() - user.getJoinTime();
 
         plugin.getServer().getScheduler().runTaskAsynchronously( plugin,
-                () -> plugin.getCoordinator().updatePlayTime( player, playTime )
+                () -> plugin.getDatabaseCoordinator().updatePlayTime( player, playTime )
         );
         user.delete();
     }

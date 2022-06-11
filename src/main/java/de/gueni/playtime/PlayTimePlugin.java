@@ -12,14 +12,20 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.logging.Level;
 
 public class PlayTimePlugin extends JavaPlugin {
+    // Adding the static getter as it is the easiest access to the plugin's instance.
+    private static PlayTimePlugin instance;
     private DatabaseCoordinator coordinator;
     private DatabaseProvider provider;
 
     @Override
     public void onEnable() {
+        // My apologies.
+        instance = this;
+
         // Initializes the default configuration so the user can change the database credentials.
         saveDefaultConfig();
 
+        // As there are some people that think reloading is a good idea...
         getServer().getOnlinePlayers().forEach( player -> {
             var user = DatabaseUser.get( player );
             user.setJoinTime( System.currentTimeMillis() );
@@ -45,12 +51,13 @@ public class PlayTimePlugin extends JavaPlugin {
             return;
         }
 
+        // Setups the tables if they don't exist
         DatabaseSetup.initDatabase( this );
-        coordinator = new DatabaseCoordinator( this );
+        coordinator = new DatabaseCoordinator( this, provider.getDataSource() );
 
         // Hooking PlaceholderAPI into the plugin
         if ( getConfig().getBoolean( "settings.placeholder_api" ) ) {
-            if ( !getServer().getPluginManager().getPlugin( "PlaceholderAPI" ).isEnabled() ) {
+            if ( getServer().getPluginManager().getPlugin( "PlaceholderAPI" ) == null ) {
                 getLogger().log( Level.WARNING, "§cPlaceholderAPI not found.. Disabling Placeholder-Support" );
                 return;
             }
@@ -62,6 +69,7 @@ public class PlayTimePlugin extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        // If the server is restarting and there are still players on it, we need to save the playtime of the players
         getServer().getOnlinePlayers().forEach( player -> {
             var user = DatabaseUser.get( player );
             var playTime = System.currentTimeMillis() - user.getJoinTime();
@@ -72,11 +80,16 @@ public class PlayTimePlugin extends JavaPlugin {
         provider.disconnect();
     }
 
-    public DatabaseCoordinator getCoordinator() {
+    // I'm sorry, I'm not even using it... :(
+    public static PlayTimePlugin getInstance() {
+        return instance;
+    }
+
+    public DatabaseCoordinator getDatabaseCoordinator() {
         return coordinator;
     }
 
-    public DatabaseProvider getProvider() {
+    public DatabaseProvider getDatabaseProvider() {
         return provider;
     }
 }
