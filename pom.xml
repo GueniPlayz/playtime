@@ -10,13 +10,6 @@
 
     <name>Playtime</name>
 
-    <properties>
-        <out.dir>C:\Users\victo\Desktop\Paper-1.18.2\lobby\plugins\</out.dir>
-        <java.version>17</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
-
     <repositories>
         <repository>
             <id>papermc</id>
