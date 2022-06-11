@@ -58,9 +58,4 @@
       <scope>provided</scope>
     </dependency>
   </dependencies>
-  <properties>
-    <java.version>17</java.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <out.dir>C:\Users\victo\Desktop\Paper-1.18.2\lobby\plugins\</out.dir>
-  </properties>
 </project>
