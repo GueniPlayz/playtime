@@ -7,9 +7,13 @@
     <groupId>de.gueni</groupId>
     <artifactId>playtime</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
-    <name>Playtime</name>
+    <name>playtime</name>
+    <modules>
+        <module>api</module>
+        <module>core</module>
+    </modules>
 
     <properties>
         <java.version>17</java.version>
@@ -26,8 +30,9 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <source>16</source>
+                    <target>16</target>
+                    <compilerArgs>--enable-preview</compilerArgs>
                 </configuration>
             </plugin>
             <plugin>
